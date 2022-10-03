@@ -74,6 +74,10 @@ class BigGameField(N: Int = 3) {
     }
 
     fun move(x: Int = range / 2, y: Int = range / 2, moveChar: String): Boolean {
+        fun isMoveCorrect(): Boolean {
+
+            return (x+1 <= range) and (y+1 <= range) and (x+1>0) and(y+1>0)
+        }
 
         fun isSymbolCorrect(moveChar: String): Boolean {
             if ((moveChar in listOfCharX) or (moveChar in listOfChar0)) {
@@ -102,7 +106,7 @@ class BigGameField(N: Int = 3) {
             println("player was moved [$moveChar] in (x = ${x + 1}, y = ${y + 1} cell) in (x = ${moves.last()[1].toInt() + 1}, y = ${moves.last()[2].toInt() + 1} field), next move must be in (x = ${x + 1}, y = ${y + 1} field)")
             moves += listOf(moveChar, x.toString(), y.toString())
             //if (checkWinInGame()) {
-                //println("win")
+            //println("win")
             //}
         }
 
@@ -113,21 +117,28 @@ class BigGameField(N: Int = 3) {
 
         //println("x = $x, y = $y, s = $moveChar")
         if (isSymbolCorrect(moveChar)) {
-            //println("symbol correct")
-            return if (isFirstMove()) {
-                makeFirstMove()
-                true
-            } else {
-                if (isCellFree(moves.last()[2].toInt(), moves.last()[1].toInt(), y, x)) {
-                    makeMove(x, y, moveChar)
-                    bigGameField[0][0].checkWinInField()
+            if (isMoveCorrect()) {
+                //println("symbol correct")
+                return if (isFirstMove()) {
+                    makeFirstMove()
                     true
                 } else {
-                    println("cell $x, $y is not free in ${moves.last()[2]} ${moves.last()[1]} field")
-                    false
-                }
+                    if (isCellFree(moves.last()[2].toInt(), moves.last()[1].toInt(), y, x)) {
+                        makeMove(x, y, moveChar)
+                        bigGameField[0][0].checkWinInField()
+                        true
+                    } else {
+                        println("cell $x, $y is not free in ${moves.last()[2]} ${moves.last()[1]} field")
+                        false
+                    }
 
+                }
+            } else {
+
+                println("move digit out of field")
+                return false
             }
+
         } else {
             println("invalid symbol")
             return false
