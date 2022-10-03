@@ -128,7 +128,7 @@ class BigGameField(N: Int = 3) {
                         bigGameField[0][0].checkWinInField()
                         true
                     } else {
-                        println("cell $x, $y is not free in ${moves.last()[2]} ${moves.last()[1]} field")
+                        println("(cell ${x+1}, ${y+1}) is not free in (field ${moves.last()[2].toInt()+1}, ${moves.last()[1].toInt()+1})")
                         false
                     }
 
@@ -139,7 +139,8 @@ class BigGameField(N: Int = 3) {
                 return false
             }
 
-        } else {
+        }
+        else {
             println("invalid symbol")
             return false
         }
