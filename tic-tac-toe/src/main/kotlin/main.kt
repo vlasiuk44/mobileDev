@@ -5,7 +5,7 @@ fun main() {
     game.printAllField()
 
 
-    while (true) {
+    while (!game.checkWinInGame()) {
         println("player ${game.player()} make move: ")
         val moveX= readLine()
         val moveY= readLine()
@@ -13,6 +13,7 @@ fun main() {
         game.printAllField()
 
     }
+    println("player ${game.player()} has lost")
 
 
 }
