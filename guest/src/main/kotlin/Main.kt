@@ -24,13 +24,9 @@ fun main() {
                     }
                 } else {
                     if (i == n - 1) {
-
-
                         i = j + n - m + 1
                         j = m - 1
-
                     }
-
                 }
             } else {
                 i += 1
@@ -46,5 +42,4 @@ fun main() {
             println()
         }
     }
-
 }
