@@ -1,5 +1,5 @@
 fun main() {
-    val game = BigGameField(5) //n must be odd
+    val game = BigGameField(3) //n must be odd
     game.printIndexField(0,0)
     game.choseF()
     game.printAllField()
